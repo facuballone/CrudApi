@@ -24,6 +24,8 @@ namespace CrudAPI.Controllers
         public async Task<ActionResult<List<EmpleadoDTO>>> Get()
         {
 
+            Console.WriteLine("entro a la lista de empleados");
+
             var listaDTO = new List<EmpleadoDTO>();
             var listaDB = await _context.Empleados.Include(p => p.PerfilReferencia).ToListAsync();
 
@@ -89,14 +91,14 @@ namespace CrudAPI.Controllers
 
             _context.Empleados.Update(empleadoDB);
             await _context.SaveChangesAsync();
-
+            Console.WriteLine("se edito correctamente");
             return Ok("se edito correctamente");
 
         }
         [HttpDelete]
         [Route("Eliminar/{ID}")]
-
-        public async Task<ActionResult<EmpleadoDTO>> Eliminar (int ID)
+        
+        public async Task<ActionResult<EmpleadoDTO>> Eliminar (int ID) //test
         {
             var empleadoDB = await _context.Empleados.FindAsync(ID);
 
